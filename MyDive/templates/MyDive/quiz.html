@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест по дайвингу</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .card h2 {
+            color: #333;
+        }
+        .card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .card li {
+            margin-bottom: 10px;
+        }
+        .card .correct-answer {
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Тест по дайвингу</h1>
+        {% for question in questions %}
+        <div class="card">
+            <h2>{{ question.text }}</h2>
+            <form method="post" action="{% url 'submit_quiz' %}">
+                {% csrf_token %}
+                {% for choice in question.choice_set.all %}
+                <p>
+                    <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}">
+                    {{ choice.text }}
+                </p>
+                {% endfor %}
+            </form>
+            <p class="correct-answer">Правильный ответ: {{ question.get_correct_answer }}</p>
+        </div>
+        {% endfor %}
+        <button type="submit" form="form1">Submit</button>
+    </div>
+</body>
+</html>
