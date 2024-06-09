@@ -1,50 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Тест по дайвингу</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Тест на знания в области дайвинга</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../static/bootstrap1.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/jumbotron.css" rel="stylesheet">
+
     <style>
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            padding: 20px;
-        }
-        .card h2 {
-            color: #333;
-        }
-        .card ul {
-            list-style-type: none;
+        /* Ваши стили для викторины */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
             padding: 0;
         }
-        .card li {
-            margin-bottom: 10px;
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
         }
-        .card .correct-answer {
-            font-weight: bold;
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .card {
+            background: #fff;
+            margin-bottom: 20px;
+            padding: 15px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        .card-title {
+            color: #333;
+        }
+        .form-check-input {
+            margin-right: 10px;
+        }
+        .form-check-label {
+            margin-right: 20px;
+        }
+        .reveal-answer {
+            display: none;
+        }
+        .answer-text {
             color: green;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Тест по дайвингу</h1>
-        {% for question in questions %}
-        <div class="card">
-            <h2>{{ question.text }}</h2>
-            <form method="post" action="{% url 'submit_quiz' %}">
-                {% csrf_token %}
-                {% for choice in question.choice_set.all %}
-                <p>
-                    <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}">
-                    {{ choice.text }}
-                </p>
-                {% endfor %}
-            </form>
-            <p class="correct-answer">Правильный ответ: {{ question.get_correct_answer }}</p>
-        </div>
-        {% endfor %}
-        <button type="submit" form="form1">Submit</button>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">MyDive</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Инструкция слушателя</a>
+            </li>
+        </ul>
     </div>
+</nav>
+
+<main role="main">
+    <!-- Содержимое основной части страницы -->
+    <div class="container">
+        <h1>Тест на знания в области дайвинга</h1>
+        <div id="quiz-container">
+            <!-- Вопросы будут добавлены здесь с помощью JavaScript -->
+        </div>
+        <button id="result-button" style="display:none;">Проверить результаты</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const questions = [
+                {
+                    question: "Давление, действующее на аквалангиста на глубине 20м равно",
+                    options: ["2 атмосферам", "3 атмосферам", "4 атмосферам", "1 атмосфере"],
+                    answer: "3 атмосферам"
+                },
+                {
+                    question: "Давление на уровне моря составляет",
+                    options: ["0 бар", "3 бара", "1 бар", "Недостаточно данных для ответа"],
+                    answer: "1 бар"
+                },
+                {
+                    question: "Воздушный шарик наполнили литром воздуха на глубине 30м. Каков будет объем шарика на поверхности, если шарик не лопнет?",
+                    options: ["4 литра", "3 литра", "7.5 литров", "40 литров"],
+                    answer: "4 литра"
+                },
+                {
+                    question: "Очки для плавания нельзя использовать для погружений, т.к.",
+                    options: ["невозможно выравнять давление под очками", "очки сильно искажают изображение", "очки дают плохой обзор под водой", "верные ответы 1 и 3"],
+                    answer: "невозможно выравнять давление под очками"
+                },
+                {
+                    question: "Аквалангист дышит воздухом, подаваемым под давлением",
+                    options: ["равным атмосферному давлению", "на 12 атмосфер больше давления окружающей среды", "равным давлению окружающей среды", "равным давлению водяного столба"],
+                    answer: "равным давлению окружающей среды"
+                },
+                {
+                    question: "Истинно или ложно? Если у вас насморк, то перед погружением необходимо принять лекарство от насморка, чтобы снять на время погружения отек. Таким образом вы сможете продуваться и погружаться без вреда для среднего уха",
+                    options: ["Истина", "Ложь"],
+                    answer: "Ложь"
+                },
+                {
+                    question: "Задержка дыхания при всплытии может привести к",
+                    options: ["баротравме уха", "обжиму маски", "баротравме зуба", "баротравме легких"],
+                    answer: "баротравме легких"
+                },
+                {
+                    question: "Если вы почувствовали дискомфорт в области уха при погружении и не можете продуться, вы должны",
+                    options: ["немедленно подняться на поверхность", "подняться чуть выше и попытаться продуться там", "попытаться продуться с большим усилием", "остановиться и подождать, когда неприятное ощущение пройдет"],
+                    answer: "подняться чуть выше и попытаться продуться там"
+                },
+                {
+                    question: "Нейтральная плавучесть достигается аквалангистом, когда",
+                    options: ["сила Архимеда равна силе тяжести", "компенсатор плавучести полностью надут", "когда баллон будет опустошен ровно наполовину", "вес свинцовых грузов равен 10% веса тела аквалангиста"],
+                    answer: "сила Архимеда равна силе тяжести"
+                },
+                {
+                    question: "Затылочный ремень маски необходимо",
+                    options: ["затянуть как можно сильнее", "не надевать", "снять и убрать в карман компенсатора плавучести", "не перетягивать"],
+                    answer: "не перетягивать"
+                }
+            ];
+        
+            const quizContainer = document.getElementById('quiz-container');
+        
+            questions.forEach((q, index) => {
+                const questionCard = document.createElement('div');
+                questionCard.classList.add('card');
+                questionCard.innerHTML = `
+                    <div class="card-body">
+                        <h5 class="card-title">Вопрос ${index + 1}</h5>
+                        <p class="card-text">${q.question}</p>
+                        ${q.options.map(option => `
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="question${index}" id="${option}">
+                                <label class="form-check-label" for="${option}">
+                                    ${option}
+                                </label>
+                            </div>
+                        `).join('')}
+                        <p class="answer-text" style="display:none;">Правильный ответ: ${q.answer}</p>
+                    </div>
+                `;
+                quizContainer.appendChild(questionCard);
+            });
+        
+            quizContainer.addEventListener('click', function(event) {
+                if (event.target.classList.contains('form-check-input')) {
+                const questionIndex = event.target.name.replace('question', '');
+                const answerText = quizContainer.querySelector(`.card:nth-child(${parseInt(questionIndex) + 1}) .answer-text`);
+                const isCorrect = event.target.id === questions[questionIndex].answer;
+                if (isCorrect) {
+                    answerText.textContent = 'Правильно!';
+                    answerText.style.color = 'green';
+                } else {
+                    answerText.textContent = `Неправильно! Правильный ответ: ${questions[questionIndex].answer}`;
+                    answerText.style.color = 'red';
+                }
+                answerText.style.display = 'block';
+            }
+            function calculateResult() {
+                let correctAnswers = 0;
+                questions.forEach((question, index) => {
+                    const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                    if (selectedOption && selectedOption.id === question.answer) {
+                        correctAnswers++;
+                    }
+                });
+                return correctAnswers;
+            }
+
+            // Функция для отображения финального результата
+            function showFinalResult() {
+                const totalQuestions = questions.length;
+                const correctAnswers = calculateResult();
+                let resultMessage = '';
+                if (correctAnswers === totalQuestions) {
+                    resultMessage = 'Вы готовы идти на дно прямо сейчас!';
+                } else if (correctAnswers > totalQuestions / 2) {
+                    resultMessage = 'Хорошо справились, но есть куда стремиться!';
+                } else {
+                    resultMessage = 'Нужно подучиться.';
+                }
+                alert(`Ваш результат: ${correctAnswers} из ${totalQuestions}. ${resultMessage}`);
+            }
+
+            // Показать кнопку "Проверить результаты" после последнего вопроса
+            const resultButton = document.getElementById('result-button');
+            resultButton.style.display = 'block';
+            resultButton.addEventListener('click', showFinalResult);
+            
+        });
+    });
+            
+    </script>               
 </body>
 </html>

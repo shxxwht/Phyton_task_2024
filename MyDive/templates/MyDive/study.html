@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+  <title>Школа Дайвинга</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
+  <link href="../../static/bootstrap1.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 150px; /* Измените это значение в зависимости от высоты вашей навигационной панели */
+    }
+    body {
+      background-color: #e6f7ff; /* Светло-голубой цвет фона, напоминающий цвет морской воды */
+    }
+
+    .masthead {
+      background-size: cover; /* Изображение на весь размер */
+      background-position: center center; /* Центрирование изображения */
+    }
+
+    .site-heading h1 {
+      color: #0275d8; /* Темно-голубой цвет текста, сочетающийся с темой дайвинга */
+      text-shadow: 2px 2px 4px #000000; /* Добавляем тень к тексту для лучшей читаемости */
+    }
+
+    .subheading {
+      color: #5bc0de; /* Светло-голубой цвет подзаголовка, сочетающийся с темой дайвинга */
+      text-shadow: 2px 2px 4px #000000; /* Также добавляем тень */
+    }
+
+    .card {
+      background-color: #f7f7f7; /* Светлый фон для карточек, чтобы текст был более читаемым */
+      border: 1px solid #0275d8; /* Граница карточки в стиле темы */
+    }
+
+    .btn-outline-secondary {
+      border-color: #0275d8; /* Цвет границы кнопки в стиле темы */
+      color: #0275d8; /* Цвет текста кнопки в стиле темы */
+    }
+
+    .btn-outline-secondary:hover {
+      background-color: #0275d8; /* Цвет фона кнопки при наведении */
+      color: #fff; /* Цвет текста кнопки при наведении */
+    }
+
+    .contact-info h4, .contact-info p, footer p {
+      color: #0275d8; /* Цвет текста контактной информации и футера в стиле темы */
+    }
+    .masthead {
+      height: 100vh; /* Высота на весь экран */
+      min-height: 500px;
+      background-size: 50%; /* Изображение на весь размер */
+      background-position: center 10%;
+      background-repeat: no-repeat;
+      
+    }
+    .site-heading {
+      position: relative;
+      top: -100px; /* Поднимает заголовок вверх на 50px */
+    }
+    site-heading h1 {
+      color: #fff; /* Устанавливаем белый цвет текста */
+      text-shadow: 2px 2px 4px #000000; /* Добавляем тень к тексту для лучшей читаемости */
+    }
+    .subheading {
+      color:#000000; /* Устанавливаем черный цвет подзаголовка */
+      text-shadow: 2px 2px 4px #000000; /* Также добавляем тень */
+    }
+    .container.mt-5 {
+      position: relative;
+      top: -200px; /* Уменьшаем верхний отступ, чтобы поднять текст */
+    }
+    .container {
+      position: relative;
+      top: -200px;
+    }
+    footer {
+      background-color: #0275d8; /* Темно-голубой цвет фона футера */
+      color: #fff; /* Белый цвет текста для контраста */
+      padding:  cover; /* Добавляем отступы для визуального разделения футера */
+      border-top: 5px solid #e6f7ff; /* Светло-голубая граница сверху для акцента */
+    }
+
+    .contact-info h4, .contact-info p, footer p {
+      color: #fff; /* Белый цвет текста для всех элементов в футере */
+    }
+        /* Убираем нижний маржин у последнего блока контента перед футером */
+
+    .contact-info a {
+      color: #ace5ee; /* Светло-голубой цвет ссылок для сочетания с темой */
+      text-decoration: none; /* Убираем подчеркивание у ссылок */
+    }
+
+    .contact-info a:hover {
+      color: #fff; /* Белый цвет текста при наведении на ссылки */
+      text-decoration: underline; /* Добавляем подчеркивание при наведении */
+    }
+    
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">MyDive</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> 
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'instruction' %}">Инструкция слушателя</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <header class="masthead" style="background-image: url('../../static/images/polus3.jpg');">
+        <div class="overlay"></div>
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="site-heading">
+                <p>  <h1>Школа Дайвинга MyDive</h1>    
+
+
+
+                <span class="subheading">Начните свое подводное приключение с нами</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+<div class="container mt-5">
+  <h1>Добро пожаловать в нашу Школу Дайвинга!</h1>
+  <p>Здесь вы найдете всю необходимую информацию, чтобы начать свое подводное приключение.</p>
+
+  <section>
+    <h2>О Школе</h2>
+    <p>Наша школа предлагает курсы дайвинга для всех уровней подготовки. Мы обучаем безопасным и ответственным методам дайвинга, чтобы вы могли наслаждаться красотой подводного мира.</p>
+  </section>
+
+  <section>
+    <h2>Мы о Дайвинге</h2>
+    <ul>
+      <li><a href="#" target="_blank">Канал профессионального дайвера Алексея</a></li>
+      <li><a href="#" target="_blank">Статья о лучших местах для дайвинга</a></li>
+      <li><a href="#" target="_blank">Интервью с инструкторами дайвинга</a></li>
+    </ul>
+  </section>
+  <div class="row justify-content-center">    <!-- Карточка курса -->
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img class="card-img-top" src="./../static/images/stud.jpg" alt="Курс дайвинга">
+        <div class="card-body">
+          <p class="card-text">Описание курса дайвинга.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ... другие карточки ... -->
+  </div>
+</div>
+  <footer class="container">
+    <div class="contact-info">
+      <h4>Контактная информация</h4>
+      <p>Адрес: Первомайская32д7, Москва, Россия</p>
+      <p>Телефон: +7 (123) 456-7890</p>
+      <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+    </div><p>&copy; School 2024</p>
+  </footer>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

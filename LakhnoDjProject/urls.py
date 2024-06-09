@@ -17,7 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from MyDive import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('news/', include('MyDive.urls')),
+    path('MyDive/', include('MyDive.urls')),
+    path('quiz/', views.quiz, name='quiz'),
+    path('instruction/', views.instruction_view, name='instruction'),
+    path('study/', views.study, name='study'),
+    path('dive_world/', views.dive_world, name='dive_world'),
+
+
+   # path('submit_quiz/', views.submit_quiz, name='submit_quiz'),
 ]

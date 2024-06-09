@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Jumbotron Template for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../static/bootstrap1.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/jumbotron.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">MyDive</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'instruction' %}">Инструкция слушателя</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  <style>
+    .card {
+      margin-bottom: 20px;
+    }
+    .card-img-top {
+      width: 100%;
+      height: 15vw;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+  <header class="masthead" style="background-image: url('../../static/images/diving-header.jpg');">
+    <!-- Заголовок и подзаголовок -->
+  </header>
+
+  <div class="container mt-5">
+    <h1>История и Основы Дайвинга</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+            <a href="https://diving-history.com" target="_blank">
+                <img class="card-img-top" src="../../static/images/hist.jpg" alt="История дайвинга">
+                <div class="card-body">
+            <h5 class="card-title">Исторические Факты</h5>
+            <p class="card-text">Дайвинг берет свое начало еще в древности, когда люди искали пищу и сокровища в водах мирового океана.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+            <a href="https://diving-basics.com" target="_blank">
+                <img class="card-img-top" src="../../static/images/bas.jpg" alt="Основы дайвинга">
+          <div class="card-body">
+            <h5 class="card-title">Основы Дайвинга</h5>
+            <p class="card-text">Знание основ дайвинга, включая оборудование и технику дыхания, необходимо для безопасного погружения.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="../../static/images/diving-test.jpg" alt="Тест по основам дайвинга">
+          <div class="card-body">
+            <h5 class="card-title">Тест по Основам Дайвинга</h5>
+            <p class="card-text">Проверьте свои знания, пройдя тест по основам дайвинга.</p>
+            <a href="https://diving-school.com/basics-test" class="btn btn-primary">Пройти Тест</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer bg-dark">
+    <!-- Контактная информация и копирайт -->
+  </footer>
+
+  <!-- Скрипты Bootstrap -->
+</body>
+</html>

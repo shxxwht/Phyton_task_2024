@@ -1,0 +1,29 @@
+form > div {
+	margin-top: 18px;
+	position: relative;
+}
+
+form > div > input {
+	width: 95%;
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+form > div > span.error {
+    display: none;
+    font-size: 0.8em;
+    position: absolute;
+}
+form > div >input:invalid:not(:focus):not(:placeholder-shown) ~ .error {
+    display: block;
+    color: red;
+}
+
+form input[type="submit"] {
+	display: block;
+	width: 100%;
+	margin-top: 18px;
+	background: #41D873;
+	color: white;
+	padding:13px;
+}
